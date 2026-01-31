@@ -1,20 +1,25 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
     GameManager gameManager;
+    SoundManager soundManager;
 
     Rigidbody rb;
     PlayerInput playerInput;
     InputAction moveAction;
 
-    [SerializeField] 
+    [SerializeField]
     float speed = 5f;
+
+    private Coroutine myCoroutine = null;
 
     void Awake()
     {
         gameManager = FindFirstObjectByType<GameManager>();
+        soundManager = FindFirstObjectByType<SoundManager>();
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions.FindAction("Move");
@@ -37,7 +42,14 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Death"))
         {
-            gameManager.ResetLevel();
+            soundManager.RandomFallSound();
+            myCoroutine = StartCoroutine(Resetting());
         }
+    }
+
+    IEnumerator Resetting()
+    {
+        yield return new WaitForSeconds(3f);
+        gameManager.ResetLevel();
     }
 }
