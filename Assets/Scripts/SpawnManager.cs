@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -14,16 +15,41 @@ public class SpawnManager : MonoBehaviour
 
     public GameObject enemy;
 
-    // Update is called once per frame
-    void Update()
+    private List<Enemy> _enemyPool = new();
+
+    private void Start()
     {
-        if (spawnCoroutine == null && GameManager.Instance.enemyCount < maxEnemies)
-        {
-            spawnCoroutine = StartCoroutine(SpawnEnemies());
+        GameManager.Instance.EventBus.MaskHappyStart += RemoveEnemies;
+        GameManager.Instance.EventBus.MaskSadStart += SpawnEnemies;
+        SpawnEnemies();
+    }
+
+    private void Update()
+    {
+        //if (spawnCoroutine == null && GameManager.Instance.enemyCount < maxEnemies)
+        //{
+        //    spawnCoroutine = StartCoroutine(SpawnEnemiesCoroutinue());
+        //}
+    }
+
+    private void SpawnEnemies() {
+        _enemyPool.Clear();
+        for (int i = 0; i < maxEnemies; i += 1) {
+            Transform spawnPoint = spawnPoints[i];
+            GameObject enemyObj = Instantiate(enemy, spawnPoint.position, Quaternion.identity);
+            Enemy enemyController = enemyObj.GetComponent<Enemy>();
+            enemyController.speed = Random.Range(2, 3);
+            _enemyPool.Add(enemyController);
         }
     }
 
-    IEnumerator SpawnEnemies()
+    private void RemoveEnemies() {
+        foreach (Enemy enemy in _enemyPool) {
+            Destroy(enemy.gameObject);
+        }
+    }
+
+    IEnumerator SpawnEnemiesCoroutinue()
     {
         yield return new WaitForSeconds(5f);
         int index = Random.Range(0, spawnPoints.Length);
