@@ -34,7 +34,10 @@ public class Timer : MonoBehaviour {
         _timeRemaining = TimerTotal;
     }
 
-    private void Start() {
+    private void Start()
+    {
+        GameManager.Instance.EventBus.LoseGame += Reset;
+        CalculateMasksDurations();
     }
 
     void Update() {
@@ -42,22 +45,31 @@ public class Timer : MonoBehaviour {
             _timeRemaining -= Time.deltaTime;
             UpdateColorVolume(Mathf.Lerp(-100, 100, _timeRemaining / 10));
             
-            if (_state <= TimerState.HAPPY && _timeRemaining >= HappyMaskDuration)
+            if (_state <= TimerState.HAPPY && _timeRemaining <= HappyMaskDuration)
             {
+                GameManager.Instance.EventBus.MaskSadStart.Invoke();
                 _state = TimerState.SAD;
             }
-            else if (_state <= TimerState.SAD && _timeRemaining >= SadMaskDuration)
+            else if (_state <= TimerState.SAD && _timeRemaining <= SadMaskDuration)
             {
+                GameManager.Instance.EventBus.MaskCreepyStart.Invoke();
                 _state = TimerState.CREEPY;
             }
         }
         else {
-            _timeRemaining = TimerTotal;
-            UpdateColorVolume(100);
             GameManager.Instance.UpdateStage();
             //Change Mask to happy mask on new stage
-            CalculateMasksDurations(); //New stage, new time durations 
+            Reset();
         }
+    }
+
+    private void Reset()
+    {
+        _timeRemaining = TimerTotal;
+        UpdateColorVolume(100);
+        CalculateMasksDurations(); //New stage, new time durations 
+        GameManager.Instance.EventBus.MaskHappyStart.Invoke();
+        _state = TimerState.HAPPY;
     }
 
     private void UpdateColorVolume(float value) {

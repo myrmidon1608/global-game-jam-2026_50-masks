@@ -20,8 +20,8 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.EventBus.MaskHappyStart += RemoveEnemies;
+        GameManager.Instance.EventBus.LoseGame += RemoveEnemies;
         GameManager.Instance.EventBus.MaskSadStart += SpawnEnemies;
-        SpawnEnemies();
     }
 
     private void Update()
@@ -33,7 +33,6 @@ public class SpawnManager : MonoBehaviour
     }
 
     private void SpawnEnemies() {
-        _enemyPool.Clear();
         for (int i = 0; i < maxEnemies; i += 1) {
             Transform spawnPoint = spawnPoints[i];
             GameObject enemyObj = Instantiate(enemy, spawnPoint.position, Quaternion.identity);
@@ -45,8 +44,9 @@ public class SpawnManager : MonoBehaviour
 
     private void RemoveEnemies() {
         foreach (Enemy enemy in _enemyPool) {
-            Destroy(enemy.gameObject);
+            if (enemy.gameObject) Destroy(enemy.gameObject);
         }
+        _enemyPool.Clear();
     }
 
     IEnumerator SpawnEnemiesCoroutinue()

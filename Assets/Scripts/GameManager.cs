@@ -33,6 +33,8 @@ public class GameManager : Singleton<GameManager>
 
     public void ResetLevel()
     {
+        EventBus.LoseGame.Invoke();
+        CurrentStage = 1;
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }
