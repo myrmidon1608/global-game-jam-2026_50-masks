@@ -3,7 +3,6 @@ using System.Collections;
 
 public class SpawnManager : MonoBehaviour
 {
-    GameManager gameManager;
 
     private Coroutine spawnCoroutine = null;
 
@@ -15,21 +14,10 @@ public class SpawnManager : MonoBehaviour
 
     public GameObject enemy;
 
-    void Awake()
-    {
-        gameManager = FindFirstObjectByType<GameManager>();
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (spawnCoroutine == null && gameManager.enemyCount < maxEnemies)
+        if (spawnCoroutine == null && GameManager.Instance.enemyCount < maxEnemies)
         {
             spawnCoroutine = StartCoroutine(SpawnEnemies());
         }

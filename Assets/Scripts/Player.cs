@@ -4,8 +4,6 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    GameManager gameManager;
-    SoundManager soundManager;
 
     Rigidbody rb;
     PlayerInput playerInput;
@@ -29,8 +27,6 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        gameManager = FindFirstObjectByType<GameManager>();
-        soundManager = FindFirstObjectByType<SoundManager>();
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions.FindAction("Move");
@@ -77,7 +73,7 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Death"))
         {
-            soundManager.RandomFallSound();
+            GameManager.Instance.SoundManager.RandomFallSound();
             myCoroutine = StartCoroutine(Resetting());
         }
     }
@@ -85,6 +81,6 @@ public class Player : MonoBehaviour
     IEnumerator Resetting()
     {
         yield return new WaitForSeconds(3f);
-        gameManager.ResetLevel();
+        GameManager.Instance.ResetLevel();
     }
 }
