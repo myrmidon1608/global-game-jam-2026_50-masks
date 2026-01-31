@@ -1,16 +1,23 @@
-using System.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     public int enemyCount = 0;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public EventBus EventBus { get; private set; }
+
+    public SoundManager SoundManager;
+
+    public SpawnManager SpawnManager;
+
+    public int CurrentStage { get; private set; }
+
+    protected override void Awake()
     {
-        
+        base.Awake();
+        EventBus = new EventBus();
     }
 
     // Update is called once per frame
@@ -28,5 +35,9 @@ public class GameManager : MonoBehaviour
     {
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
+    }
+
+    public void UpdateStage() {
+        CurrentStage++;
     }
 }

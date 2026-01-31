@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    GameManager gameManager;
-    SoundManager soundManager;
 
     private Transform player;
 
@@ -14,8 +12,6 @@ public class Enemy : MonoBehaviour
 
     void Awake()
     {
-        gameManager = FindFirstObjectByType<GameManager>();
-        soundManager = FindFirstObjectByType<SoundManager>();
         rb = GetComponent<Rigidbody>();
 
         if (player == null)
@@ -31,7 +27,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        gameManager.enemyCount++;
+        GameManager.Instance.enemyCount++;
     }
 
     void FixedUpdate()
@@ -57,8 +53,8 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Death"))
         {
-            gameManager.enemyCount--;
-            //soundManager.RandomFallSound();
+            GameManager.Instance.enemyCount--;
+            GameManager.Instance.SoundManager.RandomFallSound();
             Destroy(gameObject);
         }
     }

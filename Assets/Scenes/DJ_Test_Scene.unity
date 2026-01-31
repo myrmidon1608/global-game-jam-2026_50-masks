@@ -2121,6 +2121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCount: 0
+  SoundManager: {fileID: 777740811}
+  SpawnManager: {fileID: 1021505414}
 --- !u!4 &1764241048
 Transform:
   m_ObjectHideFlags: 0
