@@ -12,8 +12,6 @@ public class Timer : MonoBehaviour {
     [SerializeField]
     float TimerTotal = 30;
 
-    //New stuff
-    float HappyMaskDuration = 0;
     float SadMaskDuration = 0;
     float AngryMaskDuration = 0;
     private float _timeRemaining;
@@ -44,22 +42,22 @@ public class Timer : MonoBehaviour {
         if (_timeRemaining > 0) {
             _timeRemaining -= Time.deltaTime;
             UpdateColorVolume(Mathf.Lerp(-100, 100, _timeRemaining / 10));
-            
-            if (_state <= TimerState.HAPPY && _timeRemaining <= HappyMaskDuration)
-            {
-                GameManager.Instance.EventBus.MaskSadStart.Invoke();
-                _state = TimerState.SAD;
-            }
-            else if (_state <= TimerState.SAD && _timeRemaining <= SadMaskDuration)
+
+            if (_state == TimerState.SAD && _timeRemaining <= AngryMaskDuration)
             {
                 GameManager.Instance.EventBus.MaskCreepyStart.Invoke();
                 _state = TimerState.CREEPY;
             }
+            else if (_state == TimerState.HAPPY && _timeRemaining <= (AngryMaskDuration + SadMaskDuration))
+            {
+                GameManager.Instance.EventBus.MaskSadStart.Invoke();
+                _state = TimerState.SAD;
+            }
         }
         else {
             GameManager.Instance.UpdateStage();
-            //Change Mask to happy mask on new stage
-            Reset();
+            CalculateMasksDurations(); //New stage, new time durations 
+            Reset(); //Change Mask to happy mask on new stage
         }
     }
 
@@ -67,7 +65,6 @@ public class Timer : MonoBehaviour {
     {
         _timeRemaining = TimerTotal;
         UpdateColorVolume(100);
-        CalculateMasksDurations(); //New stage, new time durations 
         GameManager.Instance.EventBus.MaskHappyStart.Invoke();
         _state = TimerState.HAPPY;
     }
@@ -78,34 +75,43 @@ public class Timer : MonoBehaviour {
             color.saturation.value = value;
         }
     }
+
     // Calculating the Masks's duration depending on the stage 
     private void CalculateMasksDurations()
     {
         int stage = GameManager.Instance.CurrentStage;
+        // e.g with 60 seconds total time
         switch (stage) {
             case 1:
-            HappyMaskDuration = TimerTotal/2;
-            SadMaskDuration = TimerTotal/3;
-            AngryMaskDuration = TimerTotal/6;
-            break;
+                // HappyMaskDuration: 30
+                SadMaskDuration = TimerTotal / 3; // 20
+                AngryMaskDuration = TimerTotal / 6; // 10
+                break;
 
             case 2:
-            HappyMaskDuration = TimerTotal/3;
-            SadMaskDuration = TimerTotal/3;
-            AngryMaskDuration = TimerTotal/3;
-            break;
+                // HappyMaskDuration: 25
+                SadMaskDuration = TimerTotal / 4; // 15
+                AngryMaskDuration = TimerTotal / 3; // 20
+                break;
 
             case 3:
-            HappyMaskDuration = TimerTotal/6;
-            SadMaskDuration = TimerTotal/3;
-            AngryMaskDuration = TimerTotal/2;
-            break;
+                // HappyMaskDuration: 20
+                SadMaskDuration = TimerTotal / 3; // 20
+                AngryMaskDuration = TimerTotal / 3; // 20
+                break;
+
+            case 4:
+                // HappyMaskDuration: 15
+                SadMaskDuration = TimerTotal / 4; // 15
+                AngryMaskDuration = TimerTotal / 2; // 30
+                break;
 
             default:
-            HappyMaskDuration = TimerTotal/2;
-            SadMaskDuration = TimerTotal/3;
-            AngryMaskDuration = TimerTotal/6;
-            break;
+                // all stages beyond stage 4
+                // HappyMaskDuration: 10
+                SadMaskDuration = TimerTotal / 3; // 20
+                AngryMaskDuration = TimerTotal / 2; // 30
+                break;
         }
 
     }

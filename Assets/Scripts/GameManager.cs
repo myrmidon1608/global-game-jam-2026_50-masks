@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager>
 
     public SpawnManager SpawnManager;
 
-    public int CurrentStage { get; private set; }
+    public int CurrentStage { get; private set; } = 1;
 
     protected override void Awake()
     {
