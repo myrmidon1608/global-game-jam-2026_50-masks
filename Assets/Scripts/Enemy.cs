@@ -3,19 +3,14 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    GameManager gameManager;
-    SoundManager soundManager;
 
     Transform player;
     NavMeshAgent agent;
 
-    [SerializeField] float speed = 2.5f;
+    public float speed = 2.5f;
 
     void Awake()
     {
-        gameManager = FindFirstObjectByType<GameManager>();
-        soundManager = FindFirstObjectByType<SoundManager>();
-
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
 
@@ -26,7 +21,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        gameManager.enemyCount++;
+        GameManager.Instance.enemyCount++;
     }
 
     void Update()
@@ -40,7 +35,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Death"))
         {
-            gameManager.enemyCount--;
+            GameManager.Instance.enemyCount--;
             Destroy(gameObject);
         }
     }

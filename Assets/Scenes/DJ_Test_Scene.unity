@@ -3026,6 +3026,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab54c1969a495d64d937753f9137d2a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HappyMask: {fileID: 94482291}
+  SadMask: {fileID: 817189796}
+  CreepyMask: {fileID: 1074836569}
+  CreepyMaskSpotlight: {fileID: 1239506501}
 --- !u!1 &1660316009
 GameObject:
   m_ObjectHideFlags: 0

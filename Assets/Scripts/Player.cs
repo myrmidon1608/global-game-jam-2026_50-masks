@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
 
     IEnumerator Resetting()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         GameManager.Instance.ResetLevel();
     }
 }
