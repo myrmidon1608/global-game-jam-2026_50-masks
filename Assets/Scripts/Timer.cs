@@ -3,7 +3,9 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 public class Timer : MonoBehaviour {
-    public float timeRemaining = 10;
+    [SerializeField]
+    float TimerTotal = 30;
+    private float _timeRemaining;
 
     [SerializeField]
     GameObject Mask;
@@ -17,16 +19,27 @@ public class Timer : MonoBehaviour {
     void Awake() {
         _maskRenderer = Mask.GetComponent<SpriteRenderer>();
         _globalVolume = Volume.GetComponent<Volume>();
+        _timeRemaining = TimerTotal;
+    }
+
+    private void Start() {
     }
 
     void Update() {
-        if (timeRemaining > 0) {
-            timeRemaining -= Time.deltaTime;
+        if (_timeRemaining > 0) {
+            _timeRemaining -= Time.deltaTime;
+            UpdateColorVolume(Mathf.Lerp(-100, 100, _timeRemaining / 10));
         }
-        //Debug.Log(timeRemaining);
-        if (_globalVolume.profile.TryGet<ColorAdjustments>(out ColorAdjustments color)) {
-            color.saturation.value = Mathf.Lerp(-100, 100, timeRemaining / 10);
-            Debug.Log(color.saturation.value);
+        else {
+            _timeRemaining = TimerTotal;
+            UpdateColorVolume(100);
+        }
+    }
+
+    private void UpdateColorVolume(float value) {
+        if (_globalVolume.profile.TryGet<ColorAdjustments>(out ColorAdjustments color))
+        {
+            color.saturation.value = value;
         }
     }
 }

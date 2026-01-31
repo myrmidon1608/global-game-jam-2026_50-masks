@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Death"))
         {
             gameManager.enemyCount--;
-            soundManager.RandomFallSound();
+            //soundManager.RandomFallSound();
             Destroy(gameObject);
         }
     }
