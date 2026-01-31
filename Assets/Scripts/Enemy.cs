@@ -1,32 +1,27 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
     GameManager gameManager;
     SoundManager soundManager;
 
-    private Transform player;
+    Transform player;
+    NavMeshAgent agent;
 
-    [SerializeField] 
-    float speed = 2.5f;
-
-    Rigidbody rb;
+    [SerializeField] float speed = 2.5f;
 
     void Awake()
     {
         gameManager = FindFirstObjectByType<GameManager>();
         soundManager = FindFirstObjectByType<SoundManager>();
-        rb = GetComponent<Rigidbody>();
 
-        if (player == null)
-        {
-            GameObject playerObj = GameObject.Find("Player");
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = speed;
 
-            if (playerObj != null)
-            {
-                player = playerObj.transform;
-            }
-        }
+        GameObject playerObj = GameObject.Find("Player");
+        if (playerObj != null)
+            player = playerObj.transform;
     }
 
     void Start()
@@ -34,23 +29,11 @@ public class Enemy : MonoBehaviour
         gameManager.enemyCount++;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (player == null) return;
 
-        Vector3 direction = player.position - transform.position;
-        direction.y = 0;
-        direction.Normalize();
-
-        if (direction != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(direction);
-        }
-            
-        Vector3 velocity = rb.linearVelocity;
-        velocity.x = direction.x * speed;
-        velocity.z = direction.z * speed;
-        rb.linearVelocity = velocity;
+        agent.SetDestination(player.position);
     }
 
     void OnTriggerEnter(Collider other)
@@ -58,7 +41,6 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Death"))
         {
             gameManager.enemyCount--;
-            //soundManager.RandomFallSound();
             Destroy(gameObject);
         }
     }
