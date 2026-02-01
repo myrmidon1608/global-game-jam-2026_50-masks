@@ -18,15 +18,15 @@ public class Ground : MonoBehaviour
 
     void Update()
     {
-        //if (surfaceCoroutine == null)
-        //{
-        //    surfaceCoroutine = StartCoroutine(ChangeSurface());
-        //}
+        if (surfaceCoroutine == null)
+        {
+            surfaceCoroutine = StartCoroutine(ChangeSurface());
+        }
     }
 
     IEnumerator ChangeSurface()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(7.5f);
         int index = Random.Range(0, surfaces.Length);
 
         col.sharedMaterial = surfaces[index];
