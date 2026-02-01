@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
         agent.SetDestination(player.position);
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Death"))
         {

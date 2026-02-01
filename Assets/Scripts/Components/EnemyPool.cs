@@ -6,7 +6,7 @@ public class EnemyPool : MonoBehaviour
 
     private List<Enemy> _enemyPool = new();
 
-    private Enemy PeekEnemies()
+    private Enemy PeekEnemy()
     {
         Enemy availableEnemy = null;
         foreach (Enemy enemy in _enemyPool)
@@ -20,7 +20,7 @@ public class EnemyPool : MonoBehaviour
         return availableEnemy;
     }
 
-    public void ClearEnemies()
+    public void Clear()
     {
         foreach (Enemy enemy in _enemyPool)
         {
@@ -28,24 +28,17 @@ public class EnemyPool : MonoBehaviour
         }
     }
 
-    public void SpawnEnemies(GameObject enemyPrefab, Transform[] spawnPoints)
-    {
-        for (int i = 0; i < spawnPoints.Length; i += 1)
-        {
-            Transform spawnPoint = spawnPoints[i];
-            Enemy enemyController = PeekEnemies();
-            if (enemyController == null)
-            {
-                GameObject enemyObj = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
-                //enemyObj.transform.position = spawnPoint.position;
-                enemyController = enemyObj.GetComponent<Enemy>();
-            }
-            else {
-                enemyController.gameObject.transform.position = spawnPoint.position;
-            }
-            enemyController.speed = Random.Range(2, 3);
-            _enemyPool.Add(enemyController);
-            enemyController.gameObject.SetActive(true);
+    public void SpawnEnemy(GameObject enemyPrefab, Transform spawnPoint) {
+        Enemy enemyController = PeekEnemy();
+        if (enemyController == null) {
+            GameObject enemyObj = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+            //enemyObj.transform.position = spawnPoint.position;
+            enemyController = enemyObj.GetComponent<Enemy>();
+        } else {
+            enemyController.gameObject.transform.position = spawnPoint.position;
         }
+        enemyController.speed = Random.Range(2, 3);
+        _enemyPool.Add(enemyController);
+        enemyController.gameObject.SetActive(true);
     }
 }

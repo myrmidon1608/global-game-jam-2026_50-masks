@@ -17,12 +17,15 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.EventBus.MaskHappyStart += _enemyPool.ClearEnemies;
-        GameManager.Instance.EventBus.LoseGame += _enemyPool.ClearEnemies;
         GameManager.Instance.EventBus.MaskSadStart += SpawnEnemies;
+        GameManager.Instance.EventBus.MaskHappyStart += _enemyPool.Clear;
+        GameManager.Instance.EventBus.LoseGame += _enemyPool.Clear;
     }
 
-    private void SpawnEnemies() {
-        _enemyPool.SpawnEnemies(enemy, spawnPoints);
+    public void SpawnEnemies() {
+        for (int i = 0; i < spawnPoints.Length; i += 1) {
+            Transform spawnPoint = spawnPoints[i];
+            _enemyPool.SpawnEnemy(enemy, spawnPoint);
+        }
     }
 }

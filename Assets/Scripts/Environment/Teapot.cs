@@ -15,11 +15,6 @@ public class Teapot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(_direction);
-        Debug.Log(transform.localEulerAngles.x);
-        Debug.Log(360 + _rotationMax);
-
-
         transform.Rotate(Mathf.Lerp(0, _rotationMax * _direction, Time.deltaTime / _speed),
         transform.localRotation.y,
         transform.localRotation.z);

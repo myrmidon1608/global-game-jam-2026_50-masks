@@ -38,8 +38,8 @@ public class Player : MonoBehaviour
     {
         if (!launched)
         {
-            Vector2 input = moveAction.ReadValue<Vector2>();
-            Vector3 direction = new Vector3(input.x, 0f, input.y).normalized;
+            Vector3 input = moveAction.ReadValue<Vector3>();
+            Vector3 direction = new Vector3(input.x, 0f, input.z).normalized;
 
             if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.1f, groundLayer))
             {
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Death"))
         {

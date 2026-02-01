@@ -10,6 +10,7 @@ public class SpringTrap : MonoBehaviour
     float launchForce = 12f;
 
     private Coroutine resetTrapCoroutine = null;
+    private Player currentPlayer;
 
     void Start()
     {
@@ -28,8 +29,8 @@ public class SpringTrap : MonoBehaviour
             inactiveTrap.SetActive(false);
             activeTrap.SetActive(true);
 
-            Player player = other.GetComponent<Player>();
-            player.launched = true;
+            currentPlayer = other.GetComponent<Player>();
+            currentPlayer.launched = true;
 
             Rigidbody playerRb = other.GetComponent<Rigidbody>();
 
@@ -65,5 +66,7 @@ public class SpringTrap : MonoBehaviour
         inactiveTrap.SetActive(true);
         activeTrap.SetActive(false);
         resetTrapCoroutine = null;
+        currentPlayer.launched = false;
+        currentPlayer = null;
     }
 }
