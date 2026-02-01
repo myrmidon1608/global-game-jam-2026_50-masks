@@ -11,6 +11,8 @@ public class GameManager : Singleton<GameManager>
 
     public SpawnManager SpawnManager;
 
+    public StageManager StageManager;
+
     public LoseGameMenu LoseGameMenu;
 
     public int CurrentStage { get; private set; } = 1;
@@ -20,6 +22,10 @@ public class GameManager : Singleton<GameManager>
     {
         base.Awake();
         EventBus = new EventBus();
+    }
+
+    private void Start() {
+        StageManager.SwitchStage(CurrentStage);
     }
 
     // Update is called once per frame
@@ -57,13 +63,16 @@ public class GameManager : Singleton<GameManager>
         EventBus.LoseGame.Invoke();
         CurrentStage = 1;
         TotalTime = 0;
+        StageManager.SwitchStage(CurrentStage);
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
+
         ResumeGame();
     }
 
     public void UpdateStage() {
         CurrentStage++;
+        StageManager.SwitchStage(CurrentStage);
     }
 
     public void SetTime(float value) {

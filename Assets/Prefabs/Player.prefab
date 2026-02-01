@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2907413500527855436}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: -0.5}
-  m_LocalPosition: {x: 0, y: -0.997, z: -0.009}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 35, y: 35, z: 35}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 4316095543153721286}
   - component: {fileID: 2998287353856481604}
   - component: {fileID: 6956231854484684572}
+  - component: {fileID: 6853073387290897744}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -115,7 +116,7 @@ Transform:
   m_GameObject: {fileID: 3241637710032135256}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.07, y: -11.518, z: -9.9}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -142,9 +143,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2.049199
+  m_Height: 2.5
   m_Direction: 1
-  m_Center: {x: 0, y: -0.024599552, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &4316095543153721286
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -154,8 +155,8 @@ Rigidbody:
   m_GameObject: {fileID: 3241637710032135256}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
+  m_Drag: 0.5
+  m_AngularDrag: 0.5
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -184,12 +185,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cbf41d8731b4484194f1975cb60f940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 30
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
-  iceMaterial: {fileID: 0}
-  slowMaterial: {fileID: 0}
+    m_Bits: 64
+  iceMaterial: {fileID: 13400000, guid: e0d9824aecdc5cc48b16ca2b5c7587ac, type: 2}
+  slowMaterial: {fileID: 13400000, guid: b6163bd122cc3b8478be03af1b25aa0f, type: 2}
   launched: 0
   playerMesh: {fileID: 2907413500527855436}
 --- !u!114 &6956231854484684572
@@ -222,3 +223,23 @@ MonoBehaviour:
   m_DefaultActionMap: Movement
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &6853073387290897744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3241637710032135256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff

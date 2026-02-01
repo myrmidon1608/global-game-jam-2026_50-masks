@@ -19,10 +19,10 @@ public class SafePlatforms : MonoBehaviour
 
     void Update()
     {
-        if (showSafePlatformCoroutine == null && hideMainPlatformCoroutine == null && safePlatformsSpawned < maxPlatforms)
-        {
-            showSafePlatformCoroutine = StartCoroutine(SafePlatformVisible());
-        }
+        //if (showSafePlatformCoroutine == null && hideMainPlatformCoroutine == null && safePlatformsSpawned < maxPlatforms)
+        //{
+        //    showSafePlatformCoroutine = StartCoroutine(SafePlatformVisible());
+        //}
     }
 
     IEnumerator SafePlatformVisible()
