@@ -78,6 +78,10 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("SpringTrap"))
+        {
+            rb.linearDamping = 0;
+        }
         if (other.CompareTag("Meteor"))
         {
             playerMesh.SetActive(false);
