@@ -9,6 +9,15 @@ public class StageManager : MonoBehaviour
     private Stage _currentStage;
     private Player _player;
 
+    private int currentStageIndex = -1;
+
+    [SerializeField] 
+    Material teaSkybox;
+    [SerializeField] 
+    Material tikiSkybox;
+    [SerializeField]
+    Material snowSkybox;
+
     void Start() {
         _player = GetComponentInChildren<Player>();
     }
@@ -23,8 +32,24 @@ public class StageManager : MonoBehaviour
         if (_currentStage != null) {
             _currentStage.gameObject.SetActive(false);
         }
+
+        currentStageIndex = (stageIndex - 1) % Stages.Length;
+
         GameObject newStage = Instantiate(Stages[(stageIndex - 1) % Stages.Length], transform);
         newStage.SetActive(true);
         _currentStage = newStage.GetComponent<Stage>();
+
+        if (Stages[currentStageIndex].name == "TeaShop")
+        {
+            RenderSettings.skybox = teaSkybox;
+        }
+        else if (Stages[currentStageIndex].name == "Tiki")
+        {
+            RenderSettings.skybox = tikiSkybox;
+        }
+        else if (Stages[currentStageIndex].name == "Snow")
+        {
+            RenderSettings.skybox = snowSkybox;
+        }
     }
 }
