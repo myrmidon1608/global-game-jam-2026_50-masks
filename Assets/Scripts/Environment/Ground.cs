@@ -13,7 +13,6 @@ public class Ground : MonoBehaviour
 
     void Start()
     {
-    {
         col = GetComponent<Collider>();
     }
 

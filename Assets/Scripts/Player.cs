@@ -85,8 +85,7 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Meteor"))
         {
             playerMesh.SetActive(false);
-            GameManager.Instance.SoundManager.RandomFallSound();
-            myCoroutine = StartCoroutine(Resetting());
+            Die();
         }
     }
 
@@ -94,9 +93,13 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Death"))
         {
-            GameManager.Instance.SoundManager.RandomFallSound();
-            myCoroutine = StartCoroutine(Resetting());
+            Die();
         }
+    }
+
+    public void Die() {
+        GameManager.Instance.SoundManager.RandomFallSound();
+        myCoroutine = StartCoroutine(Resetting());
     }
 
     IEnumerator Resetting()
