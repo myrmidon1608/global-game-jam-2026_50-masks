@@ -54,18 +54,24 @@ public class Player : MonoBehaviour
                     if (direction.z != 0) {
                         forceDir += direction.z * transform.forward;
                     }
-                    rb.AddForce(direction.magnitude * (speed * 2) * forceDir, ForceMode.Acceleration);
+                    rb.linearDamping = 1;
+                    rb.AddForce(direction.magnitude * speed * forceDir, ForceMode.Acceleration);
 
-                //Vector3 flatVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-                //if (flatVelocity.magnitude > maxSpeed) {
-                //    flatVelocity = flatVelocity.normalized * maxSpeed;
-                //    rb.linearVelocity = new Vector3(flatVelocity.x, rb.linearVelocity.y, flatVelocity.z);
-                //}
+                    //Vector3 flatVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+                    //if (flatVelocity.magnitude > maxSpeed) {
+                    //    flatVelocity = flatVelocity.normalized * maxSpeed;
+                    //    rb.linearVelocity = new Vector3(flatVelocity.x, rb.linearVelocity.y, flatVelocity.z);
+                    //}
                 } else if (mat == slowMaterial) {
+                    rb.linearDamping = 7;
                     rb.AddForce(direction * (speed / 2), ForceMode.Force);
                 } else {
+                    rb.linearDamping = 5;
                     rb.AddForce(direction * speed, ForceMode.Force);
                 }
+            } else {
+                // falling
+                rb.linearDamping = 0;
             }
         }
     }
