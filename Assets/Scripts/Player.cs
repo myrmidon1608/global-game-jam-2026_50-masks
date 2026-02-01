@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
 
     public bool launched;
 
+    public GameObject playerMesh;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -65,6 +67,16 @@ public class Player : MonoBehaviour
                     rb.AddForce(direction * speed, ForceMode.Force);
                 }
             }
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Meteor"))
+        {
+            playerMesh.SetActive(false);
+            GameManager.Instance.SoundManager.RandomFallSound();
+            myCoroutine = StartCoroutine(Resetting());
         }
     }
 

@@ -7,6 +7,9 @@ TagManager:
   - Death
   - Enemy
   - SpringTrap
+  - Fire
+  - FireAttack
+  - Meteor
   layers:
   - Default
   - TransparentFX

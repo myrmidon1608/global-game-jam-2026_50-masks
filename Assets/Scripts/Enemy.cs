@@ -31,6 +31,15 @@ public class Enemy : MonoBehaviour
         agent.SetDestination(player.position);
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Meteor"))
+        {
+            GameManager.Instance.enemyCount--;
+            Destroy(gameObject);
+        }
+    }
+
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Death"))
