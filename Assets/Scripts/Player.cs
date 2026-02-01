@@ -92,6 +92,6 @@ public class Player : MonoBehaviour
     IEnumerator Resetting()
     {
         yield return new WaitForSeconds(1f);
-        GameManager.Instance.ResetLevel();
+        GameManager.Instance.OpenLoseGameMenu();
     }
 }

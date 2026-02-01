@@ -11,6 +11,8 @@ public class GameManager : Singleton<GameManager>
 
     public SpawnManager SpawnManager;
 
+    public LoseGameMenu LoseGameMenu;
+
     public int CurrentStage { get; private set; } = 1;
     public float TotalTime { get; private set; } = 0;
 
@@ -31,6 +33,25 @@ public class GameManager : Singleton<GameManager>
         //Debug.Log(enemyCount);
     }
 
+    public void PauseGame() {
+        Time.timeScale = 0;
+    }
+
+    public bool IsGamePaused() {
+        return Time.timeScale == 0;
+    }
+
+    public void ResumeGame() {
+        Time.timeScale = 1;
+    }
+
+    public void QuitGame() {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
+    }
+
     public void ResetLevel()
     {
         EventBus.LoseGame.Invoke();
@@ -38,6 +59,7 @@ public class GameManager : Singleton<GameManager>
         TotalTime = 0;
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
+        ResumeGame();
     }
 
     public void UpdateStage() {
@@ -46,5 +68,10 @@ public class GameManager : Singleton<GameManager>
 
     public void SetTime(float value) {
         TotalTime += value;
+    }
+
+    public void OpenLoseGameMenu() {
+        PauseGame();
+        LoseGameMenu.Open();
     }
 }
