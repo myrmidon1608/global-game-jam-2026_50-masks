@@ -28,4 +28,8 @@ public class SpawnManager : MonoBehaviour
             _enemyPool.SpawnEnemy(enemy, spawnPoint);
         }
     }
+
+    public void RemoveEnemy(Enemy enemy) {
+        _enemyPool.Remove(enemy);
+    }
 }

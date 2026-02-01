@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    public int enemyCount = 0;
 
     public EventBus EventBus { get; private set; }
 
@@ -13,6 +12,7 @@ public class GameManager : Singleton<GameManager>
     public SpawnManager SpawnManager;
 
     public int CurrentStage { get; private set; } = 1;
+    public float TotalTime { get; private set; } = 0;
 
     protected override void Awake()
     {
@@ -35,11 +35,16 @@ public class GameManager : Singleton<GameManager>
     {
         EventBus.LoseGame.Invoke();
         CurrentStage = 1;
+        TotalTime = 0;
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }
 
     public void UpdateStage() {
         CurrentStage++;
+    }
+
+    public void SetTime(float value) {
+        TotalTime += value;
     }
 }

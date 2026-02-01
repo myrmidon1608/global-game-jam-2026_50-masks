@@ -28,11 +28,6 @@ public class Enemy : MonoBehaviour
             player = playerObj.transform;
     }
 
-    void Start()
-    {
-        GameManager.Instance.enemyCount++;
-    }
-
     void Update()
     {
         if (player == null) return;
@@ -57,8 +52,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Meteor"))
         {
-            GameManager.Instance.enemyCount--;
-            Destroy(gameObject);
+            GameManager.Instance.SpawnManager.RemoveEnemy(this);
         }
     }
 
@@ -66,8 +60,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Death"))
         {
-            GameManager.Instance.enemyCount--;
-            Destroy(gameObject);
+            GameManager.Instance.SpawnManager.RemoveEnemy(this);
         }
     }
 }

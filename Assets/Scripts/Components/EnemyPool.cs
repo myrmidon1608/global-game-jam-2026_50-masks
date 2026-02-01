@@ -24,7 +24,7 @@ public class EnemyPool : MonoBehaviour
     {
         foreach (Enemy enemy in _enemyPool)
         {
-            enemy.gameObject.SetActive(false);
+            Remove(enemy);
         }
     }
 
@@ -40,5 +40,9 @@ public class EnemyPool : MonoBehaviour
         enemyController.speed = Random.Range(2, 3);
         _enemyPool.Add(enemyController);
         enemyController.gameObject.SetActive(true);
+    }
+
+    public void Remove(Enemy enemy) {
+        enemy.gameObject.SetActive(false);
     }
 }

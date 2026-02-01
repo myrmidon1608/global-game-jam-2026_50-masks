@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
         if (!launched) {
             Vector3 input = moveAction.ReadValue<Vector3>();
             Vector3 direction = new Vector3(input.x, 0f, input.z).normalized;
-            Debug.Log(direction);
+            //Debug.Log(direction);
 
             if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.1f, groundLayer)) {
                 PhysicsMaterial mat = hit.collider.sharedMaterial;
