@@ -10,10 +10,9 @@ public class Player : MonoBehaviour
     InputAction moveAction;
 
     [SerializeField]
-    float speed = 5f;
+    float speed;
 
-    [SerializeField] 
-    float maxSpeed = 5f;
+    float maxSpeed;
 
     private Coroutine myCoroutine = null;
 
@@ -27,54 +26,67 @@ public class Player : MonoBehaviour
 
     public bool launched;
 
+    public GameObject playerMesh;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions.FindAction("Move");
+        maxSpeed = speed;
     }
 
     void FixedUpdate()
     {
-        if (!launched)
-        {
-            Vector2 input = moveAction.ReadValue<Vector2>();
-            Vector3 direction = new Vector3(input.x, 0f, input.y).normalized;
+        if (!launched) {
+            Vector3 input = moveAction.ReadValue<Vector3>();
+            Vector3 direction = new Vector3(input.x, 0f, input.z).normalized;
+            //Debug.Log(direction);
 
-            if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.1f, groundLayer))
-            {
+            if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.1f, groundLayer)) {
                 PhysicsMaterial mat = hit.collider.sharedMaterial;
 
-                if (mat == iceMaterial)
-                {
-                    rb.AddForce(direction * speed, ForceMode.Acceleration);
-
-                    Vector3 flatVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-                    if (flatVelocity.magnitude > maxSpeed)
-                    {
-                        flatVelocity = flatVelocity.normalized * maxSpeed;
-                        rb.linearVelocity = new Vector3(flatVelocity.x, rb.linearVelocity.y, flatVelocity.z);
+                if (mat == iceMaterial) {
+                    Vector3 forceDir = Vector3.zero;
+                    if (direction.x != 0) {
+                        forceDir += direction.x * transform.right;
                     }
+                    if (direction.z != 0) {
+                        forceDir += direction.z * transform.forward;
+                    }
+                    rb.linearDamping = 1;
+                    rb.AddForce(direction.magnitude * speed * forceDir, ForceMode.Acceleration);
+
+                    //Vector3 flatVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+                    //if (flatVelocity.magnitude > maxSpeed) {
+                    //    flatVelocity = flatVelocity.normalized * maxSpeed;
+                    //    rb.linearVelocity = new Vector3(flatVelocity.x, rb.linearVelocity.y, flatVelocity.z);
+                    //}
+                } else if (mat == slowMaterial) {
+                    rb.linearDamping = 7;
+                    rb.AddForce(direction * (speed / 2), ForceMode.Force);
+                } else {
+                    rb.linearDamping = 5;
+                    rb.AddForce(direction * speed, ForceMode.Force);
                 }
-                else if (mat == slowMaterial)
-                {
-                    Vector3 velocity = rb.linearVelocity;
-                    velocity.x = direction.x * (speed * 0.5f);
-                    velocity.z = direction.z * (speed * 0.5f);
-                    rb.linearVelocity = velocity;
-                }
-                else
-                {
-                    Vector3 velocity = rb.linearVelocity;
-                    velocity.x = direction.x * speed;
-                    velocity.z = direction.z * speed;
-                    rb.linearVelocity = velocity;
-                }
+            } else {
+                // falling
+                rb.linearDamping = 0;
             }
         }
     }
 
     void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Meteor"))
+        {
+            playerMesh.SetActive(false);
+            GameManager.Instance.SoundManager.RandomFallSound();
+            myCoroutine = StartCoroutine(Resetting());
+        }
+    }
+
+    void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Death"))
         {
@@ -86,6 +98,6 @@ public class Player : MonoBehaviour
     IEnumerator Resetting()
     {
         yield return new WaitForSeconds(1f);
-        GameManager.Instance.ResetLevel();
+        GameManager.Instance.OpenLoseGameMenu();
     }
 }
