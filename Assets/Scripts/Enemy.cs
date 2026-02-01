@@ -9,10 +9,19 @@ public class Enemy : MonoBehaviour
 
     public float speed = 2.5f;
 
+    [SerializeField] 
+    float groundCheckDistance = 1.2f;
+    [SerializeField] 
+    LayerMask groundLayer;
+
+    Rigidbody rb;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
+
+        rb = GetComponent<Rigidbody>();
 
         GameObject playerObj = GameObject.Find("Player");
         if (playerObj != null)
@@ -28,7 +37,20 @@ public class Enemy : MonoBehaviour
     {
         if (player == null) return;
 
-        agent.SetDestination(player.position);
+        bool grounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
+
+        if (grounded)
+        {
+            if (!agent.enabled)
+                agent.enabled = true;
+
+            agent.SetDestination(player.position);
+        }
+        else
+        {
+            if (agent.enabled)
+                agent.enabled = false;
+        }
     }
 
     void OnTriggerEnter(Collider other)
