@@ -12,7 +12,7 @@ public class Ground : MonoBehaviour
     private Coroutine surfaceCoroutine = null;
 
     void Start()
-    {
+    
     {
         col = GetComponent<Collider>();
     }
