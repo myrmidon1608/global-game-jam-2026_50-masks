@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/MainScene/NavMesh-NavMesh Surface.asset.meta
 guid: 1cd4d0d797afdcd4c9b6a052c7debca8
+========
+guid: e99842e3ff7ca44c89861787181d8a51
+>>>>>>>> 6ed25f6 (Added Texture for Tiki map and changed safe platforms to plates):Assets/Prefabs/Stages/NavMesh-NavMesh Surface 2.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 23800000
