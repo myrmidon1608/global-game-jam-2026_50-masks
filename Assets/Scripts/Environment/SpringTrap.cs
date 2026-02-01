@@ -39,12 +39,9 @@ public class SpringTrap : MonoBehaviour
                 Vector3 horizontalVelocity = new Vector3(playerRb.linearVelocity.x, 0f, playerRb.linearVelocity.z);
 
                 Vector3 launchDir;
-                if (horizontalVelocity.magnitude > 0.1f)
-                {
+                if (horizontalVelocity.magnitude > 0.1f) {
                     launchDir = -horizontalVelocity.normalized;
-                } 
-                else
-                {
+                } else {
                     launchDir = Vector3.up;
                 }
 
@@ -52,7 +49,7 @@ public class SpringTrap : MonoBehaviour
                 launchDir += Vector3.up;
                 launchDir.Normalize();
 
-                playerRb.linearVelocity = new Vector3(playerRb.linearVelocity.x, 0f, playerRb.linearVelocity.z);
+                //playerRb.linearVelocity = new Vector3(playerRb.linearVelocity.x, 0f, playerRb.linearVelocity.z);
                 playerRb.AddForce(launchDir * launchForce, ForceMode.Impulse);
             }
 
