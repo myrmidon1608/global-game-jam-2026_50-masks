@@ -10,10 +10,9 @@ public class Player : MonoBehaviour
     InputAction moveAction;
 
     [SerializeField]
-    float speed = 5f;
+    float speed;
 
-    [SerializeField] 
-    float maxSpeed = 5f;
+    float maxSpeed;
 
     private Coroutine myCoroutine = null;
 
@@ -32,9 +31,10 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions.FindAction("Move");
+        maxSpeed = speed;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (!launched)
         {
@@ -58,17 +58,11 @@ public class Player : MonoBehaviour
                 }
                 else if (mat == slowMaterial)
                 {
-                    Vector3 velocity = rb.linearVelocity;
-                    velocity.x = direction.x * (speed * 0.5f);
-                    velocity.z = direction.z * (speed * 0.5f);
-                    rb.linearVelocity = velocity;
+                    rb.linearVelocity = direction * (speed / 2);
                 }
                 else
                 {
-                    Vector3 velocity = rb.linearVelocity;
-                    velocity.x = direction.x * speed;
-                    velocity.z = direction.z * speed;
-                    rb.linearVelocity = velocity;
+                    rb.linearVelocity = direction * speed;
                 }
             }
         }
