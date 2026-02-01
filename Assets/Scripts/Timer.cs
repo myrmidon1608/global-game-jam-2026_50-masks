@@ -41,7 +41,7 @@ public class Timer : MonoBehaviour {
     void Update() {
         if (_timeRemaining > 0) {
             _timeRemaining -= Time.deltaTime;
-            UpdateColorVolume(Mathf.Lerp(-100, 100, _timeRemaining / 10));
+            UpdateColorVolume(Mathf.Lerp(-100, 100, (_timeRemaining - AngryMaskDuration) / 10));
 
             if (_state == TimerState.SAD && _timeRemaining <= AngryMaskDuration)
             {

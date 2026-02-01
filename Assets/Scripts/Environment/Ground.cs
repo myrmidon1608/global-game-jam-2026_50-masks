@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Ground : MonoBehaviour
 {
+
     private Collider col;
 
     [SerializeField]
