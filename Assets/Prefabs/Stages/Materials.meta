@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Stages/Materials.meta
 guid: 1285395bda2de7b4b87601a13ca40f10
+========
+guid: 9d63d7b17fb154893ae818eadda0dc77
+>>>>>>>> Pit-Branch:Assets/Stylize Snow Texture.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
