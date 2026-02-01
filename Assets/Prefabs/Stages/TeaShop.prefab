@@ -95,7 +95,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 8ad43d8c06ae5e64ba651e317d4d863b, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 6e939fdca911bad4b97b8660775cb55a, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &1769253887434665494
 GameObject:
@@ -1341,18 +1341,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8562294990619890611}
     m_Modifications:
-    - target: {fileID: 8470741754228928694, guid: 4779eb9847334014cb200cf34aed3288, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8470741754228928694, guid: 4779eb9847334014cb200cf34aed3288, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 9fc5f1e7c5c5847499e86a206af746f8, type: 2}
-    - target: {fileID: 8470741754228928694, guid: 4779eb9847334014cb200cf34aed3288, type: 3}
-      propertyPath: 'm_Materials.Array.data[1]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 9fc5f1e7c5c5847499e86a206af746f8, type: 2}
     - target: {fileID: -8679921383154817045, guid: 43734f3a8c109a44980ccc85bec719da, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.8
@@ -1389,6 +1377,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8470741754228928694, guid: 4779eb9847334014cb200cf34aed3288, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8470741754228928694, guid: 4779eb9847334014cb200cf34aed3288, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9fc5f1e7c5c5847499e86a206af746f8, type: 2}
+    - target: {fileID: 8470741754228928694, guid: 4779eb9847334014cb200cf34aed3288, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9fc5f1e7c5c5847499e86a206af746f8, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1495,10 +1495,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8562294990619890611}
     m_Modifications:
-    - target: {fileID: -2570866681064289054, guid: 8235e69a2acc5cb49a2a4279cf4f1499, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 855c224fcb4099f47a143e0a73f5f829, type: 2}
     - target: {fileID: -8679921383154817045, guid: b0708748136b2c048898cd8dc542c962, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -1563,6 +1559,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pillow
       objectReference: {fileID: 0}
+    - target: {fileID: -2570866681064289054, guid: 8235e69a2acc5cb49a2a4279cf4f1499, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 855c224fcb4099f47a143e0a73f5f829, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
