@@ -10,6 +10,12 @@ public enum SoundName
     FallSound4,
     FallSound5,
     FallSound6,
+    SpringTrapSound,
+    HorrorScreamSound,
+    SilentWeepingSound,
+    BirdsChirpingSound,
+    HappyToSadSound,
+    SadToHorrorSound,
 }
 
 public class SoundManager : MonoBehaviour
