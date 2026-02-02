@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,6 +23,14 @@ public class MainMenu : MonoBehaviour {
     }
 
     private void StartGame() {
+        StartCoroutine(StartGameCoroutine());
+    }
+
+    IEnumerator StartGameCoroutine()
+    {
+        HappyMask.SetActive(false);
+        CreepyMask.SetActive(true);
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("MainScene");
     }
 
