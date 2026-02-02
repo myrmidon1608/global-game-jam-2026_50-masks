@@ -18,10 +18,10 @@ public class Ground : MonoBehaviour
 
     void Update()
     {
-        if (surfaceCoroutine == null)
-        {
-            surfaceCoroutine = StartCoroutine(ChangeSurface());
-        }
+        //if (surfaceCoroutine == null)
+        //{
+        //    surfaceCoroutine = StartCoroutine(ChangeSurface());
+        //}
     }
 
     IEnumerator ChangeSurface()
