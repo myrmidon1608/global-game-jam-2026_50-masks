@@ -2522,6 +2522,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5414802902536415770, guid: 6610ae62c2de01140b3df490113dbcef, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 19236783d2d601b4f9ba4190fa44a5c7, type: 2}
     - target: {fileID: 919132149155446097, guid: 6610ae62c2de01140b3df490113dbcef, type: 3}
       propertyPath: m_Name
       value: Mask_Anguish
@@ -3619,6 +3623,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -461383341416624468, guid: 7545f31ad879e1b42a74fdcf5a48d5ef, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b6bab7053587edc468b530719c9c0bf6, type: 2}
     - target: {fileID: 919132149155446097, guid: 7545f31ad879e1b42a74fdcf5a48d5ef, type: 3}
       propertyPath: m_Name
       value: Mask_Creepy
