@@ -9,7 +9,6 @@ public class Spotlight : MonoBehaviour {
     {
         if (other.TryGetComponent<Player>(out Player player))
         {
-            Debug.Log("SEEN!");
             myCoroutine = StartCoroutine(SpotlightCoroutine(player));
         }
     }

@@ -35,7 +35,7 @@ public class StageManager : MonoBehaviour
 
         currentStageIndex = (stageIndex - 1) % Stages.Length;
 
-        GameObject newStage = Instantiate(Stages[(stageIndex - 1) % Stages.Length], transform);
+        GameObject newStage = Stages[(stageIndex - 1) % Stages.Length]; // Instantiate(Stages[(stageIndex - 1) % Stages.Length], transform);
         newStage.SetActive(true);
         _currentStage = newStage.GetComponent<Stage>();
 
