@@ -487,8 +487,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RotationSpeed: 100
   Stages:
-  - {fileID: 6537390230925588768, guid: 67714b4b9be50b14db7efffe2c7e07df, type: 3}
   - {fileID: 6537390230925588768, guid: 1d1e1de6c71fb1840878bd458961faf8, type: 3}
+  - {fileID: 6537390230925588768, guid: 67714b4b9be50b14db7efffe2c7e07df, type: 3}
   teaSkybox: {fileID: 2100000, guid: cc421da483ed06c49933077a621bff25, type: 2}
   tikiSkybox: {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
   snowSkybox: {fileID: 2100000, guid: c54438989564f2841b9199078f940efe, type: 2}
@@ -2882,6 +2882,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2224146215436153654, guid: 4a717105677df1a41b819e5c6d9b385d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bae0a9901677ace4da73c996c4b8a1b9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
