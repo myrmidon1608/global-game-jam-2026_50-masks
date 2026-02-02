@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
                         forceDir += direction.z * transform.forward;
                     }
                     rb.linearDamping = 1;
-                    rb.AddForce(direction.magnitude * speed * forceDir, ForceMode.Acceleration);
+                    rb.AddForce(direction.magnitude * (speed * 2) * forceDir, ForceMode.Acceleration);
 
                     //Vector3 flatVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
                     //if (flatVelocity.magnitude > maxSpeed) {

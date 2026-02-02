@@ -84,33 +84,27 @@ public class Timer : MonoBehaviour {
         // e.g with 60 seconds total time
         switch (stage) {
             case 1:
-                // HappyMaskDuration: 30
-                SadMaskDuration = TimerTotal / 3; // 20
-                AngryMaskDuration = TimerTotal / 6; // 10
-                break;
-
-            case 2:
                 // HappyMaskDuration: 25
                 SadMaskDuration = TimerTotal / 4; // 15
                 AngryMaskDuration = TimerTotal / 3; // 20
                 break;
 
-            case 3:
+            case 2:
                 // HappyMaskDuration: 20
                 SadMaskDuration = TimerTotal / 3; // 20
                 AngryMaskDuration = TimerTotal / 3; // 20
                 break;
 
-            case 4:
+            case 3:
                 // HappyMaskDuration: 15
                 SadMaskDuration = TimerTotal / 4; // 15
                 AngryMaskDuration = TimerTotal / 2; // 30
                 break;
 
             default:
-                // all stages beyond stage 4
-                // HappyMaskDuration: 10
-                SadMaskDuration = TimerTotal / 3; // 20
+                // all stages beyond stage 3
+                // HappyMaskDuration: 15
+                SadMaskDuration = TimerTotal / 4; // 15
                 AngryMaskDuration = TimerTotal / 2; // 30
                 break;
         }
