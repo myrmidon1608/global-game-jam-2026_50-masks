@@ -80,6 +80,7 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("SpringTrap"))
         {
+            GameManager.Instance.SoundManager.Play(SoundName.SpringTrapSound);
             rb.linearDamping = 0;
         }
         if (other.CompareTag("Meteor"))

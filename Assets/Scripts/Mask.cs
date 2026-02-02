@@ -27,6 +27,18 @@ public class Mask : MonoBehaviour {
     }
 
     private void ChangeToHappyMask() {
+        if (GameManager.Instance.SoundManager.IsPlaying(SoundName.HorrorScreamSound))
+        {
+            GameManager.Instance.SoundManager.Stop(SoundName.HorrorScreamSound);
+        }
+        if (GameManager.Instance.SoundManager.IsPlaying(SoundName.SadToHorrorSound))
+        {
+            GameManager.Instance.SoundManager.Stop(SoundName.SadToHorrorSound);
+        }
+        if (!GameManager.Instance.SoundManager.IsPlaying(SoundName.BirdsChirpingSound))
+        {
+            GameManager.Instance.SoundManager.Play(SoundName.BirdsChirpingSound);
+        }
         HappyMask.SetActive(true);
         SadMask.SetActive(false);
         CreepyMask.SetActive(false);
@@ -34,6 +46,18 @@ public class Mask : MonoBehaviour {
     }
 
     private void ChangeToSadMask() {
+        if (GameManager.Instance.SoundManager.IsPlaying(SoundName.BirdsChirpingSound))
+        {
+            GameManager.Instance.SoundManager.Stop(SoundName.BirdsChirpingSound);
+        }
+        if (!GameManager.Instance.SoundManager.IsPlaying(SoundName.HappyToSadSound))
+        {
+            GameManager.Instance.SoundManager.Play(SoundName.HappyToSadSound);
+        }
+        if (!GameManager.Instance.SoundManager.IsPlaying(SoundName.SilentWeepingSound))
+        {
+            GameManager.Instance.SoundManager.Play(SoundName.SilentWeepingSound);
+        }
         HappyMask.SetActive(false);
         SadMask.SetActive(true);
         CreepyMask.SetActive(false);
@@ -41,6 +65,22 @@ public class Mask : MonoBehaviour {
     }
 
     private void ChangeToCreepyMask() {
+        if (GameManager.Instance.SoundManager.IsPlaying(SoundName.SilentWeepingSound))
+        {
+            GameManager.Instance.SoundManager.Stop(SoundName.SilentWeepingSound);
+        }
+        if (GameManager.Instance.SoundManager.IsPlaying(SoundName.HappyToSadSound))
+        {
+            GameManager.Instance.SoundManager.Stop(SoundName.HappyToSadSound);
+        }
+        if (!GameManager.Instance.SoundManager.IsPlaying(SoundName.SadToHorrorSound))
+        {
+            GameManager.Instance.SoundManager.Play(SoundName.SadToHorrorSound);
+        }
+        if (!GameManager.Instance.SoundManager.IsPlaying(SoundName.HorrorScreamSound))
+        {
+            GameManager.Instance.SoundManager.Play(SoundName.HorrorScreamSound);
+        }
         HappyMask.SetActive(false);
         SadMask.SetActive(false);
         CreepyMask.SetActive(true);
