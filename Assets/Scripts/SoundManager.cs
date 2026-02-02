@@ -16,6 +16,9 @@ public enum SoundName
     BirdsChirpingSound,
     HappyToSadSound,
     SadToHorrorSound,
+    HappyGameMusic,
+    SadGameMusic,
+    HorrorGameMusic,
 }
 
 public class SoundManager : MonoBehaviour

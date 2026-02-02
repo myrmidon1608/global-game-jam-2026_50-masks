@@ -35,9 +35,17 @@ public class Mask : MonoBehaviour {
         {
             GameManager.Instance.SoundManager.Stop(SoundName.SadToHorrorSound);
         }
+        if (GameManager.Instance.SoundManager.IsPlaying(SoundName.HorrorGameMusic))
+        {
+            GameManager.Instance.SoundManager.Stop(SoundName.HorrorGameMusic);
+        }
         if (!GameManager.Instance.SoundManager.IsPlaying(SoundName.BirdsChirpingSound))
         {
             GameManager.Instance.SoundManager.Play(SoundName.BirdsChirpingSound);
+        }
+        if (!GameManager.Instance.SoundManager.IsPlaying(SoundName.HappyGameMusic))
+        {
+            GameManager.Instance.SoundManager.Play(SoundName.HappyGameMusic);
         }
         HappyMask.SetActive(true);
         SadMask.SetActive(false);
@@ -49,6 +57,14 @@ public class Mask : MonoBehaviour {
         if (GameManager.Instance.SoundManager.IsPlaying(SoundName.BirdsChirpingSound))
         {
             GameManager.Instance.SoundManager.Stop(SoundName.BirdsChirpingSound);
+        }
+        if (GameManager.Instance.SoundManager.IsPlaying(SoundName.HappyGameMusic))
+        {
+            GameManager.Instance.SoundManager.Stop(SoundName.HappyGameMusic);
+        }
+        if (!GameManager.Instance.SoundManager.IsPlaying(SoundName.SadGameMusic))
+        {
+            GameManager.Instance.SoundManager.Play(SoundName.SadGameMusic);
         }
         if (!GameManager.Instance.SoundManager.IsPlaying(SoundName.HappyToSadSound))
         {
@@ -72,6 +88,14 @@ public class Mask : MonoBehaviour {
         if (GameManager.Instance.SoundManager.IsPlaying(SoundName.HappyToSadSound))
         {
             GameManager.Instance.SoundManager.Stop(SoundName.HappyToSadSound);
+        }
+        if (GameManager.Instance.SoundManager.IsPlaying(SoundName.SadGameMusic))
+        {
+            GameManager.Instance.SoundManager.Stop(SoundName.SadGameMusic);
+        }
+        if (!GameManager.Instance.SoundManager.IsPlaying(SoundName.HorrorGameMusic))
+        {
+            GameManager.Instance.SoundManager.Play(SoundName.HorrorGameMusic);
         }
         if (!GameManager.Instance.SoundManager.IsPlaying(SoundName.SadToHorrorSound))
         {
