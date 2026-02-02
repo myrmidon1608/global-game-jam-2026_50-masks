@@ -18,10 +18,10 @@ public class Ground : MonoBehaviour
 
     void Update()
     {
-        //if (surfaceCoroutine == null)
-        //{
-        //    surfaceCoroutine = StartCoroutine(ChangeSurface());
-        //}
+        /*if (surfaceCoroutine == null)
+        {
+            surfaceCoroutine = StartCoroutine(ChangeSurface());
+        }*/
     }
 
     IEnumerator ChangeSurface()
@@ -35,7 +35,7 @@ public class Ground : MonoBehaviour
 
         if (index == 0)
         {
-            rend.material.color = Color.blue;
+            rend.material.color = Color.white;
         }
         else if (index == 1)
         {
